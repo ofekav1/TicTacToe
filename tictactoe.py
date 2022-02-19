@@ -68,8 +68,16 @@ def get_move(player: Player) -> Coords:
     :param player: the player whose turn it is to play
     :return: the coordinates the player chose
     """
-    row, col = input(f"{player}'s move: ").split()
-    return int(row), int(col)
+    
+    #
+    co = input(f"{player}'s move: ")
+    #update #2: a check for spaces (' ') in th players input. loops until a valid input is inserted 
+    while co.find(' ') == -1:
+        print("Invalid input. try again!/nValie Input Example: 1 4")
+        co = input(f"{player}'s move: ")
+    row, col = co.split()
+    #update #2: player will input values in range of 0>x instead of 0=>x
+    return (int(row)-1), (int(col)-1)
 
 
 def show_board(board: Board):
